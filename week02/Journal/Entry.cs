@@ -10,5 +10,4 @@ public class Entry
         Console.WriteLine("Prompt: " + _promptText);
         Console.WriteLine("Response: " + _entryText);
     }
-
 }

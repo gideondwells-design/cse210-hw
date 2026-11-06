@@ -1,7 +1,6 @@
 public class Journal
 {
-    
-        public bool HasUnsavedChanges { get; private set; }
+    public bool HasUnsavedChanges { get; private set; }
     public List<Entry> _entries = new List<Entry>();
 
     public void AddEntry(Entry newEntry)
@@ -17,7 +16,7 @@ public class Journal
             Console.WriteLine("No journal entries yet.");
             return;
         }
-        
+
         var entriesByMonth = _entries
             .GroupBy(entry =>
             {
@@ -25,11 +24,11 @@ public class Journal
                 return new DateTime(date.Year, date.Month, 1);
             })
             .OrderByDescending(monthGroup => monthGroup.Key);
-        
+
         foreach (var monthGroup in entriesByMonth)
         {
             Console.WriteLine(monthGroup.Key.ToString("MMMM yyyy"));
-        
+
             foreach (Entry entry in monthGroup.OrderByDescending(
                 entry => DateTime.Parse(entry._date)))
             {
@@ -50,7 +49,7 @@ public class Journal
         HasUnsavedChanges = false;
     }
 
-    public void LoadFormFile(string file)
+    public void LoadFromFile(string file)
     {
         _entries.Clear();
         using (StreamReader inputFile = new StreamReader(file))
