@@ -1,17 +1,40 @@
 public class Journal
 {
+    
+        public bool HasUnsavedChanges { get; private set; }
     public List<Entry> _entries = new List<Entry>();
 
     public void AddEntry(Entry newEntry)
     {
         _entries.Add(newEntry);
+        HasUnsavedChanges = true;
     }
 
     public void DisplayAll()
     {
-        foreach (Entry entry in _entries)
+        if (_entries.Count == 0)
         {
-            entry.Display();
+            Console.WriteLine("No journal entries yet.");
+            return;
+        }
+        
+        var entriesByMonth = _entries
+            .GroupBy(entry =>
+            {
+                DateTime date = DateTime.Parse(entry._date);
+                return new DateTime(date.Year, date.Month, 1);
+            })
+            .OrderByDescending(monthGroup => monthGroup.Key);
+        
+        foreach (var monthGroup in entriesByMonth)
+        {
+            Console.WriteLine(monthGroup.Key.ToString("MMMM yyyy"));
+        
+            foreach (Entry entry in monthGroup.OrderByDescending(
+                entry => DateTime.Parse(entry._date)))
+            {
+                entry.Display();
+            }
         }
     }
 
@@ -24,11 +47,14 @@ public class Journal
                 outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
             }
         }
+        HasUnsavedChanges = false;
     }
 
     public void LoadFormFile(string file)
     {
+        _entries.Clear();
         using (StreamReader inputFile = new StreamReader(file))
+
         {
             while (!inputFile.EndOfStream)
             {
@@ -40,5 +66,6 @@ public class Journal
                 _entries.Add(entry);
             }
         }
+        HasUnsavedChanges = false;
     }
 }

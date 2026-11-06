@@ -43,13 +43,34 @@ class Program
                 theJournal.DisplayAll();
                 break;
             case 3:
-                // Load the journal
-
-                theJournal.LoadFormFile(fileName);
+            {
+                bool shouldLoad = true;
+            
+                if (theJournal.HasUnsavedChanges)
                 {
+                    Console.WriteLine("You have unsaved entries. Save, discard, or cancel loading?");
+                    Console.WriteLine("Enter S to save, D to discard, or C to cancel:");
+                    string answer = Console.ReadLine().Trim().ToUpper();
+            
+                    if (answer == "S")
+                    {
+                        theJournal.SaveToFile(fileName);
+                    }
+                    else if (answer != "D")
+                    {
+                        shouldLoad = false;
+                        Console.WriteLine("Loading cancelled.");
+                    }
+                }
+            
+                if (shouldLoad)
+                {
+                    theJournal.LoadFormFile(fileName);
                     Console.WriteLine("Journal loaded successfully.");
                 }
+            
                 break;
+            }
             case 4:
                 // Save the journal
                 theJournal.SaveToFile(fileName);
