@@ -4,6 +4,11 @@ public class PromptGenerator
 
     public string GetRandomPrompt()
     {
-        return "";
+        Random random = new Random();
+        int index = random.Next(0, _prompts.Count);
+        
+        return _prompts[index];
+
+
     }
 }
