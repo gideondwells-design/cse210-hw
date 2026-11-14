@@ -11,16 +11,23 @@ class Program
 
         if (File.Exists(saveFile))
         {
-            Console.Write("Use the last saved scripture? (y/n): ");
-            string answer = Console.ReadLine() ?? "";
-
-            if (answer.Equals("y", StringComparison.OrdinalIgnoreCase))
+            if (TryLoadScripture(saveFile, out Reference savedReference, out string savedText))
             {
-                loadedSavedScripture = TryLoadScripture(saveFile, out reference, out text);
-                if (!loadedSavedScripture)
+                Console.WriteLine($"Last scripture: {savedReference.GetDisplayText()}");
+                Console.WriteLine(savedText);
+                Console.Write("Use this scripture? (y/n): ");
+                string answer = Console.ReadLine() ?? "";
+
+                if (answer.Equals("y", StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine("The saved scripture could not be read. Please enter it again.");
+                    reference = savedReference;
+                    text = savedText;
+                    loadedSavedScripture = true;
                 }
+            }
+            else
+            {
+                Console.WriteLine("The saved scripture could not be read. Please enter it again.");
             }
         }
 
@@ -45,6 +52,7 @@ class Program
 
                 if (int.TryParse(endInput, out endVerse) && endVerse >= startVerse)
                 {
+                    Console.Clear();
                     break;
                 }
 
