@@ -52,7 +52,6 @@ class Program
 
                 if (int.TryParse(endInput, out endVerse) && endVerse >= startVerse)
                 {
-                    Console.Clear();
                     break;
                 }
 
