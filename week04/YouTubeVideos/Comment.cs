@@ -13,8 +13,4 @@ public class Comment
     {
         return $"{_author}: {_text}";
     }
-
-
-
-
 }
