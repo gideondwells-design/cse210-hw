@@ -1,10 +1,12 @@
 public class Video
 {
-    public string _title;
-    public string _author;
-    public string _description;
-    public int _lengthInSeconds;
-    public List<Comment> _comments = new List<Comment>();
+    private string _title;
+    private string _author;
+    private string _description;
+    private int _lengthInSeconds;
+    private List<Comment> _comments = new List<Comment>();
+
+    public IReadOnlyList<Comment> Comments => _comments;
 
     public Video(string title, string author, string description, int length)
     {

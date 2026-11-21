@@ -1,10 +1,22 @@
 public class Customer
 {
-    public string _name;
-    public Address _address;
+    private string _name;
+    private Address _address;
 
-    public bool isInUSA()
+    public string Name
     {
-        return _address.isInUSA();
+        get => _name;
+        set => _name = value;
+    }
+
+    public Address Address
+    {
+        get => _address;
+        set => _address = value;
+    }
+
+    public bool IsInUSA()
+    {
+        return Address.IsInUSA();
     }
 }

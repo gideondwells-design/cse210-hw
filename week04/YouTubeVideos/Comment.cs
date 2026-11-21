@@ -1,7 +1,7 @@
 public class Comment
 {
-    public string _author;
-    public string _text;
+    private string _author;
+    private string _text;
 
     public Comment(string author, string text)
     {

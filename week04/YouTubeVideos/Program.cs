@@ -28,7 +28,7 @@ class Program
         {
             video.Display();
             Console.WriteLine($"Comments ({video.GetCommentCount()}):");
-            foreach (Comment comment in video._comments)
+            foreach (Comment comment in video.Comments)
             {
                 Console.WriteLine(comment.GetDisplayText());
             }
