@@ -38,6 +38,10 @@ class Program
             }
             else if (choice == "4")
             {
+                Console.WriteLine("Thank you for using the Mindfulness program!");
+                Console.WriteLine("I hope you have a great day!");
+                Console.WriteLine("Press Enter to exit.");
+                Console.ReadLine();
                 keepGoing = false;
             }
             else
