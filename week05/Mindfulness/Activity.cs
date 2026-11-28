@@ -14,9 +14,9 @@ public class Activity
     public void DisplayStartMessage()
     {
         System.Console.WriteLine($"Welcome to the {_name} activity.");
-        System.Console.WriteLine($"Description: {_description}");
+        System.Console.WriteLine($"{_description}");
         System.Console.WriteLine();
-        System.Console.Write("How long, in seconds, would you like to participate? ");
+        System.Console.Write("How long, in seconds, would you like to try? ");
         while (!int.TryParse(System.Console.ReadLine(), out _duration) || _duration <= 0)
         {
             System.Console.Write("Please enter a positive number of seconds: ");
