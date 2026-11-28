@@ -7,7 +7,8 @@ public class ListingActivity : Activity
         "What is a challenge you are facing?",
         "What is a goal you want to achieve?",
         "What is something that makes you happy?",
-        "What is something you want to improve?"
+        "What is something you want to improve?",
+        "When have you felt the holy ghost this month?"
     };
     public ListingActivity()
         : base(
