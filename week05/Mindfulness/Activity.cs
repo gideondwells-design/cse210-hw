@@ -24,6 +24,7 @@ public class Activity
         System.Console.WriteLine();
         System.Console.WriteLine("Get ready...");
         ShowSpinner("-", 3);
+        System.Console.Clear();
     }
 
     public void DisplayEndMessage()
@@ -59,8 +60,12 @@ public class Activity
     {
         for (int i = second; i > 0; i--)
         {
-            System.Console.Write(i + " ");
+            System.Console.Write(i);
             System.Threading.Thread.Sleep(1000);
+            for (int character = 0; character < i.ToString().Length; character++)
+            {
+                System.Console.Write("\b");
+            }
         }
         System.Console.WriteLine();
     }

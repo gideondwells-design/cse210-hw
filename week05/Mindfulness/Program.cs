@@ -20,16 +20,19 @@ class Program
 
             if (choice == "1")
             {
+                Console.Clear();
                 Activity activity = new BreathingActivity();
                 activity.Run();
             }
             else if (choice == "2")
             {
+                Console.Clear();
                 Activity activity = new ReflectingActivity();
                 activity.Run();
             }
             else if (choice == "3")
             {
+                Console.Clear();
                 Activity activity = new ListingActivity();
                 activity.Run();
             }

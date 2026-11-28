@@ -40,11 +40,14 @@ public class ReflectingActivity : Activity
         System.Console.WriteLine("Now ponder on each of the following questions:");
         ShowCountdown(5);
 
+        List<string> remainingQuestions = new List<string>(_questions);
         System.Random random = new System.Random();
         System.DateTime endTime = System.DateTime.Now.AddSeconds(_duration);
-        while (System.DateTime.Now < endTime)
+        while (System.DateTime.Now < endTime && remainingQuestions.Count > 0)
         {
-            string question = _questions[random.Next(_questions.Count)];
+            int randomIndex = random.Next(remainingQuestions.Count);
+            string question = remainingQuestions[randomIndex];
+            remainingQuestions.RemoveAt(randomIndex);
             System.Console.WriteLine(question);
             ShowSpinner("-", 5);
         }
